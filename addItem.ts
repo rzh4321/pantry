@@ -6,6 +6,6 @@ import { revalidatePath } from 'next/cache'
 
 export default async function addItem(name : string, count : number) {
     await db.insert(items).values({ name: name, count: count});
- 
+    revalidatePath('/')
     console.log('done')
 }   

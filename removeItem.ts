@@ -4,8 +4,7 @@ import { items } from "@/schema";
 import { sum, eq, sql } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
-export default async function getItems() {
-    const res = await db.select({id: items.id, name: items.name, count: items.count}).from(items);
+export default async function removeItem(id : number) {
+    const res = await db.delete(items).where(eq(items.id, id))
     revalidatePath('/')
-    return res;
 }
